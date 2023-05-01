@@ -1,4 +1,3 @@
-import 'package:bookilo_clean_arch/core/constants/assets_data.dart';
 import 'package:bookilo_clean_arch/core/models/book_model/volume_info.dart';
 import 'package:bookilo_clean_arch/core/utils/styles.dart';
 import 'package:bookilo_clean_arch/core/models/book_model/book_model.dart';
