@@ -21,8 +21,8 @@ class FeaturedBooksListView extends StatelessWidget {
               begin: 0,
               end: 1,
             ).animate(animation),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: BookImageItem(
                 showButton: true,
                 bookModel: BookModel(),

@@ -21,8 +21,8 @@ class NewestBooksListView extends StatelessWidget {
                     .animate(animation),
             child: FadeTransition(
               opacity: Tween<double>(begin: 0, end: 1).animate(animation),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: BookItem(
                   bookModel: BookModel(),
                 ),

@@ -32,7 +32,7 @@ abstract class AppRouter {
       GoRoute(
         path: kBookDetailsView,
         builder: (context, state) {
-          return const BookDetailsView(
+          return BookDetailsView(
             bookModel: BookModel(),
           );
         },
