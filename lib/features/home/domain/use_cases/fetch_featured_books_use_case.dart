@@ -7,7 +7,7 @@ class FetchFeaturedBooksUsecase {
   final HomeRepository homeRepository;
 
   FetchFeaturedBooksUsecase({required this.homeRepository});
-  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() {
+  Future<Either<Failure, List<BookEntity>>> call() {
     //ex: check internet permission
     return homeRepository.fetchFeaturedBooks();
   }
