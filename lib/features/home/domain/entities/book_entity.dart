@@ -7,12 +7,13 @@ class BookEntity {
   final num? rating;
   final int? ratingCount;
 
-  BookEntity(
-      {required this.bookId,
-      required this.image,
-      required this.title,
-      required this.author,
-      required this.price,
-      required this.rating,
-      required this.ratingCount});
+  BookEntity({
+    required this.bookId,
+    required this.image,
+    required this.title,
+    required this.author,
+    required this.price,
+    required this.rating,
+    required this.ratingCount,
+  });
 }
