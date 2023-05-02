@@ -33,6 +33,7 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   google_fonts: ^4.0.3
   auto_animated: ^3.1.0
+  shimmer_animation: ^2.1.0+1
   flutter_native_splash: ^2.2.19
   #For Functional programming
   dartz: ^0.10.1
@@ -48,6 +49,9 @@ dependencies:
   dio: ^5.1.1
   internet_connection_checker: ^1.0.0+1
   cached_network_image: ^3.2.3
+  #For saving local data
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
   flutter:
     sdk: flutter
