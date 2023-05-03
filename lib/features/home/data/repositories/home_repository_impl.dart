@@ -16,11 +16,12 @@ class HomeRepositoryImpl extends HomeRepository {
   @override
   Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() async {
     try {
-      var booksListLocal = homeLocalDatasource.fetchFeaturedBooks();
-      if (booksListLocal.isNotEmpty) {
-        return Right(booksListLocal);
+      List<BookEntity> booksList;
+      booksList = homeLocalDatasource.fetchFeaturedBooks();
+      if (booksList.isNotEmpty) {
+        return Right(booksList);
       }
-      var booksList = await homeRemoteDatasource.fetchFeaturedBooks();
+      booksList = await homeRemoteDatasource.fetchFeaturedBooks();
       return Right(booksList);
     } catch (e) {
       return Left(ServerFailure(errorMessage: e.runtimeType.toString()));
@@ -30,11 +31,12 @@ class HomeRepositoryImpl extends HomeRepository {
   @override
   Future<Either<Failure, List<BookEntity>>> fetchNewestBooks() async {
     try {
-      var booksListLocal = homeLocalDatasource.fetchNewestBooks();
-      if (booksListLocal.isNotEmpty) {
-        return Right(booksListLocal);
+      List<BookEntity> booksList;
+      booksList = homeLocalDatasource.fetchNewestBooks();
+      if (booksList.isNotEmpty) {
+        return Right(booksList);
       }
-      var booksList = await homeRemoteDatasource.fetchNewestBooks();
+      booksList = await homeRemoteDatasource.fetchNewestBooks();
       return Right(booksList);
     } catch (e) {
       return Left(ServerFailure(errorMessage: e.runtimeType.toString()));
