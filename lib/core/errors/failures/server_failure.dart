@@ -15,7 +15,9 @@ class ServerFailure extends Failure {
         return const ServerFailure(message: "Incorrect certificate.");
       case DioErrorType.badResponse:
         return ServerFailure.fromResponse(
-            dioError.response!.statusCode!, dioError.response!.data);
+          dioError.response!.statusCode!,
+          dioError.response!.data,
+        );
       case DioErrorType.cancel:
         return const ServerFailure(
             message: "Request to API server was cancelled.");
@@ -31,11 +33,12 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int statusCode, dynamic reponse) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      //?The message Depend on API
       return ServerFailure(message: reponse["error"]["message"]);
     } else if (statusCode == 404) {
       return const ServerFailure(
           message: "Your request not found, please try again later!");
-    } else if (statusCode == 500) {
+    } else if (statusCode >= 500) {
       return const ServerFailure(
           message: "Internal server error, please try again later!");
     } else {
