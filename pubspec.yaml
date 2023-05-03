@@ -58,8 +58,12 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^2.0.0
+  hive_generator: ^2.0.0
+  build_runner: ^2.3.3
+
   flutter_test:
     sdk: flutter
+    
 flutter_native_splash:
   color: "#100b20"
   color_dark: "#100b20"
