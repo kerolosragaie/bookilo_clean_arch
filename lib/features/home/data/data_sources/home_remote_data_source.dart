@@ -1,6 +1,7 @@
+import 'package:bookilo_clean_arch/core/constants/constants.dart';
 import 'package:bookilo_clean_arch/core/models/book_model/book_model.dart';
 import 'package:bookilo_clean_arch/core/utils/api_service.dart';
-
+import '../../../../core/utils/functions/save_books_local.dart';
 import '../../domain/entities/book_entity.dart';
 
 abstract class HomeRemoteDatasource {
@@ -18,6 +19,7 @@ class HomeRemoteDatasourceImpl extends HomeRemoteDatasource {
     var data = await apiService.get(
         endPoint: "volumes?Filtering=free-ebooks&q=programming");
     List<BookEntity> booksList = _parseBooksList(data);
+    saveBooksLocal(booksList, kFeaturedBox);
     return booksList;
   }
 
@@ -27,6 +29,7 @@ class HomeRemoteDatasourceImpl extends HomeRemoteDatasource {
         endPoint:
             "volumes?Filtering=free-ebooks&q=computer-science&Sorting=newest");
     List<BookEntity> booksList = _parseBooksList(data);
+    saveBooksLocal(booksList, kNewestBox);
     return booksList;
   }
 
