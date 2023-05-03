@@ -1,11 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-
-abstract class Failure {
-  final String? message;
-  const Failure({this.message});
-}
+part of 'failures.dart';
 
 class ServerFailure extends Failure {
   const ServerFailure({required super.message});
@@ -50,27 +43,4 @@ class ServerFailure extends Failure {
           message: "Opps, unkown error, please try again later!");
     }
   }
-}
-
-class NetworkFailure extends Failure {
-  NetworkFailure({
-    super.message,
-  });
-  factory NetworkFailure.fromInternetConnection(
-      InternetConnectionStatus internetConnectionStatus) {
-    return NetworkFailure(
-        message:
-            "Cannot connect to internet, please check your connection and try again.");
-  }
-}
-
-class CacheFailure extends Failure {
-  CacheFailure({required super.message});
-  factory CacheFailure.fromHiveError(HiveError hiveError) {
-    return CacheFailure(message: hiveError.message);
-  }
-}
-
-class UnkownFailure extends Failure {
-  UnkownFailure({required super.message});
 }

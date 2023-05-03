@@ -1,12 +1,12 @@
 import 'package:bookilo_clean_arch/features/home/data/data_sources/home_local_data_source.dart';
 import 'package:bookilo_clean_arch/features/home/data/data_sources/home_remote_data_source.dart';
 import 'package:bookilo_clean_arch/features/home/domain/entities/book_entity.dart';
-import 'package:bookilo_clean_arch/core/errors/failures.dart';
 import 'package:bookilo_clean_arch/features/home/domain/repositories/home_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:hive/hive.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import '../../../../core/errors/failures/failures.dart';
 
 class HomeRepositoryImpl extends HomeRepository {
   final HomeRemoteDatasource homeRemoteDatasource;
