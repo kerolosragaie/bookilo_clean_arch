@@ -12,7 +12,7 @@ abstract class HomeRemoteDatasource {
 class HomeRemoteDatasourceImpl extends HomeRemoteDatasource {
   final ApiService apiService;
 
-  HomeRemoteDatasourceImpl(this.apiService);
+  HomeRemoteDatasourceImpl({required this.apiService});
 
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
