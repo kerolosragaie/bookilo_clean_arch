@@ -1,3 +1,4 @@
+import 'package:bookilo_clean_arch/core/utils/app_bloc_obersver.dart';
 import 'package:bookilo_clean_arch/features/home/presentation/views/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ void main() async {
   await Hive.openBox<BookEntity>(kNewestBox);
 
   await di.setupServiceLocater();
+  Bloc.observer = AppBlocObserver();
   runApp(const BookiloCA());
 }
 
