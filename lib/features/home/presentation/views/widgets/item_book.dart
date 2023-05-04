@@ -1,6 +1,6 @@
 import 'package:bookilo_clean_arch/core/models/book_model/volume_info.dart';
 import 'package:bookilo_clean_arch/core/utils/styles.dart';
-import 'package:bookilo_clean_arch/core/models/book_model/book_model.dart';
+import 'package:bookilo_clean_arch/features/home/domain/entities/book_entity.dart';
 import 'package:bookilo_clean_arch/features/home/presentation/views/widgets/widget_book_rating.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -8,17 +8,17 @@ import '../../../../../core/utils/app_router.dart';
 import 'image_custom_book.dart';
 
 class BookItem extends StatelessWidget {
-  final BookModel bookModel;
-  const BookItem({super.key, required this.bookModel});
+  final BookEntity bookEntity;
+  const BookItem({super.key, required this.bookEntity});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         if (GoRouterState.of(context).location == kBookDetailsView) {
           GoRouter.of(context)
-              .pushReplacement(kBookDetailsView, extra: bookModel);
+              .pushReplacement(kBookDetailsView, extra: bookEntity);
         } else {
-          GoRouter.of(context).push(kBookDetailsView, extra: bookModel);
+          GoRouter.of(context).push(kBookDetailsView, extra: bookEntity);
         }
       },
       child: SizedBox(
@@ -38,7 +38,7 @@ class BookItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: Text(
-                      bookModel.volumeInfo?.title ?? "Batman",
+                      bookEntity.title ?? "Batman",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle20,
@@ -50,7 +50,7 @@ class BookItem extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.4,
                     child: Text(
-                      bookModel.volumeInfo?.authors?.first ?? "Unknown",
+                      bookEntity.author ?? "Unknown",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Styles.textStyle14,

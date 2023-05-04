@@ -1,4 +1,4 @@
-import 'package:bookilo_clean_arch/core/models/book_model/book_model.dart';
+import 'package:bookilo_clean_arch/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/app_router.dart';
@@ -6,11 +6,11 @@ import 'image_custom_book.dart';
 
 class BookImageItem extends StatelessWidget {
   final bool? showButton;
-  final BookModel bookModel;
+  final BookEntity bookEntity;
   const BookImageItem({
     super.key,
     this.showButton,
-    required this.bookModel,
+    required this.bookEntity,
   });
 
   @override
@@ -19,9 +19,9 @@ class BookImageItem extends StatelessWidget {
       onTap: () {
         if (GoRouterState.of(context).location == kBookDetailsView) {
           GoRouter.of(context)
-              .pushReplacement(kBookDetailsView, extra: bookModel);
+              .pushReplacement(kBookDetailsView, extra: bookEntity);
         } else {
-          GoRouter.of(context).push(kBookDetailsView, extra: bookModel);
+          GoRouter.of(context).push(kBookDetailsView, extra: bookEntity);
         }
       },
       child: CustomBookImage(

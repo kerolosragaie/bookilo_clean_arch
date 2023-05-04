@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
 import 'app_bar_home.dart';
+import 'bloc_builder_featured_books_list_view.dart';
 import 'list_view_newest_books.dart';
-import 'list_view_featured_books.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -20,7 +20,7 @@ class HomeViewBody extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                 child: HomeAppBar(),
               ),
-              const FeaturedBooksListView(),
+              const FeaturedBooksListviewBlocBuilder(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(

@@ -1,5 +1,4 @@
 import 'package:auto_animated/auto_animated.dart';
-import 'package:bookilo_clean_arch/core/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/widget_custom_error.dart';
@@ -38,7 +37,7 @@ class NewestBooksListView extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: BookItem(
-                        bookModel: state.booksList[index] as BookModel,
+                        bookEntity: state.booksList[index],
                       ),
                     ),
                   ),
