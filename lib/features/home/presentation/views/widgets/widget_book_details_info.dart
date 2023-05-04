@@ -1,5 +1,4 @@
-import 'package:bookilo_clean_arch/core/models/book_model/book_model.dart';
-import 'package:bookilo_clean_arch/core/models/book_model/volume_info.dart';
+import 'package:bookilo_clean_arch/features/home/domain/entities/book_entity.dart';
 import 'package:bookilo_clean_arch/features/home/presentation/views/widgets/widget_book_details_actions.dart';
 import 'package:bookilo_clean_arch/features/home/presentation/views/widgets/widget_book_rating.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +6,8 @@ import '../../../../../core/utils/styles.dart';
 import 'image_custom_book.dart';
 
 class BookDetailsInfoWidget extends StatelessWidget {
-  final BookModel bookModel;
-  const BookDetailsInfoWidget({super.key, required this.bookModel});
+  final BookEntity bookEntity;
+  const BookDetailsInfoWidget({super.key, required this.bookEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +17,14 @@ class BookDetailsInfoWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.22),
           child: CustomBookImage(
-            imageUrl: bookModel.volumeInfo?.imageLinks?.thumbnail,
+            imageUrl: bookEntity.image,
           ),
         ),
         const SizedBox(
           height: 30,
         ),
         Text(
-          bookModel.volumeInfo?.title ?? "Batman",
+          bookEntity.title ?? "Batman",
           maxLines: 2,
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
@@ -37,7 +36,7 @@ class BookDetailsInfoWidget extends StatelessWidget {
           height: 6,
         ),
         Text(
-          bookModel.volumeInfo?.authors?.first ?? "Unknown",
+          bookEntity.author ?? "Unknown",
           style: Styles.textStyle18.copyWith(
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.italic,
@@ -48,15 +47,15 @@ class BookDetailsInfoWidget extends StatelessWidget {
         ),
         BookRatingWidget(
           mainAxisAlignment: MainAxisAlignment.center,
-          volumeInfo: bookModel.volumeInfo ??
-              const VolumeInfo(ratingsCount: 0, averageRating: 0),
+          rating: bookEntity.rating,
+          averageRatingCount: bookEntity.ratingCount,
         ),
         const SizedBox(
           height: 16,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: BookActionsWidget(bookModel: bookModel),
+          child: BookActionsWidget(bookEntity: bookEntity),
         ),
       ],
     );

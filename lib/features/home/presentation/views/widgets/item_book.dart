@@ -1,4 +1,3 @@
-import 'package:bookilo_clean_arch/core/models/book_model/volume_info.dart';
 import 'package:bookilo_clean_arch/core/utils/styles.dart';
 import 'package:bookilo_clean_arch/features/home/domain/entities/book_entity.dart';
 import 'package:bookilo_clean_arch/features/home/presentation/views/widgets/widget_book_rating.dart';
@@ -25,8 +24,8 @@ class BookItem extends StatelessWidget {
         height: 125,
         child: Row(
           children: [
-            const CustomBookImage(
-              imageUrl: null,
+            CustomBookImage(
+              imageUrl: bookEntity.image,
             ),
             const SizedBox(
               width: 30,
@@ -67,11 +66,9 @@ class BookItem extends StatelessWidget {
                         style: Styles.textStyle20.copyWith(
                             color: Colors.green, fontWeight: FontWeight.bold),
                       ),
-                      const BookRatingWidget(
-                        volumeInfo: VolumeInfo(
-                          ratingsCount: 0,
-                          averageRating: 0,
-                        ),
+                      BookRatingWidget(
+                        rating: bookEntity.rating,
+                        averageRatingCount: bookEntity.ratingCount,
                       ),
                     ],
                   ),

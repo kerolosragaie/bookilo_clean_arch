@@ -25,7 +25,7 @@ class BookImageItem extends StatelessWidget {
         }
       },
       child: CustomBookImage(
-        imageUrl: null,
+        imageUrl: bookEntity.image,
         showButton: showButton ?? false,
       ),
     );

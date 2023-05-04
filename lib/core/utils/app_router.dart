@@ -1,4 +1,4 @@
-import 'package:bookilo_clean_arch/core/models/book_model/book_model.dart';
+import 'package:bookilo_clean_arch/features/home/domain/entities/book_entity.dart';
 import 'package:bookilo_clean_arch/features/home/presentation/views/book_details_view.dart';
 import 'package:bookilo_clean_arch/features/search/presentation/views/search_view.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ abstract class AppRouter {
         path: kBookDetailsView,
         builder: (context, state) {
           return BookDetailsView(
-            bookModel: BookModel(),
+            bookEntity: state.extra as BookEntity,
           );
         },
       ),
