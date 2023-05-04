@@ -4,10 +4,10 @@ import 'package:bookilo_clean_arch/features/home/domain/repositories/home_reposi
 import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failures/failures.dart';
 
-class FetchNewestBooksUsecase extends Usecase<List<BookEntity>, NoParam> {
+class NewestBooksUsecase extends Usecase<List<BookEntity>, NoParam> {
   final HomeRepository homeRepository;
 
-  FetchNewestBooksUsecase({required this.homeRepository});
+  NewestBooksUsecase({required this.homeRepository});
   @override
   Future<Either<Failure, List<BookEntity>>> call([NoParam? param]) async {
     return await homeRepository.fetchNewestBooks();
