@@ -17,7 +17,8 @@ class HomeRepositoryImpl extends HomeRepository {
     required this.homeLocalDatasource,
   });
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks(
+      {int pageNumber = 0}) async {
     try {
       List<BookEntity> booksList;
       booksList = homeLocalDatasource.fetchFeaturedBooks();
@@ -49,7 +50,7 @@ class HomeRepositoryImpl extends HomeRepository {
   Left<Failure, List<BookEntity>> _catchingError(Object e) {
     if (e is HiveError) {
       return Left(CacheFailure.fromHiveError(e));
-    } else if (e is DioError) {
+    } else if (e is DioException) {
       return Left(ServerFailure.fromDioError(e));
     } else if (e is InternetConnectionStatus) {
       return Left(NetworkFailure.fromInternetConnection(e));
