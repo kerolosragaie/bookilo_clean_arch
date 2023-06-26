@@ -16,7 +16,7 @@ class LoadingIndicatorWidget extends StatelessWidget {
 
   Widget _buildWidget(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.2,
+      height: MediaQuery.of(context).size.height * 0.3,
       child: const Center(
         child: CircularProgressIndicator(
           color: Colors.white,
