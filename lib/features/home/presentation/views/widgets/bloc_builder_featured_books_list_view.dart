@@ -6,16 +6,16 @@ import '../../../../../core/widgets/widget_loading_indicator.dart';
 import '../manager/featured_books_cubit/featured_books_cubit.dart';
 import 'list_view_featured_books.dart';
 
-class FeaturedBooksListviewBlocBuilder extends StatefulWidget {
-  const FeaturedBooksListviewBlocBuilder({super.key});
+class FeaturedBooksListviewBlocConsumer extends StatefulWidget {
+  const FeaturedBooksListviewBlocConsumer({super.key});
 
   @override
-  State<FeaturedBooksListviewBlocBuilder> createState() =>
-      _FeaturedBooksListviewBlocBuilderState();
+  State<FeaturedBooksListviewBlocConsumer> createState() =>
+      _FeaturedBooksListviewBlocConsumerState();
 }
 
-class _FeaturedBooksListviewBlocBuilderState
-    extends State<FeaturedBooksListviewBlocBuilder> {
+class _FeaturedBooksListviewBlocConsumerState
+    extends State<FeaturedBooksListviewBlocConsumer> {
   List<BookEntity> booksList = [];
 
   @override
@@ -24,6 +24,13 @@ class _FeaturedBooksListviewBlocBuilderState
       listener: (context, state) {
         if (state is FeaturedBooksSuccess) {
           booksList.addAll(state.booksList);
+        } else if (state is FeaturedBooksPaginationFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage.toString()),
+              backgroundColor: Colors.red,
+            ),
+          );
         }
       },
       builder: (context, state) {
@@ -32,7 +39,8 @@ class _FeaturedBooksListviewBlocBuilderState
         } else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(errorMessage: state.errorMessage);
         } else if (state is FeaturedBooksSuccess ||
-            state is FeaturedBooksPaginationLoading) {
+            state is FeaturedBooksPaginationLoading ||
+            state is FeaturedBooksPaginationFailure) {
           return FeaturedBooksListView(
             booksList: booksList,
           );

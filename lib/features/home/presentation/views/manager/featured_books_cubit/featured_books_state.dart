@@ -13,6 +13,12 @@ class FeaturedBooksLoading extends FeaturedBooksState {}
 
 class FeaturedBooksPaginationLoading extends FeaturedBooksState {}
 
+class FeaturedBooksPaginationFailure extends FeaturedBooksState {
+  final String errorMessage;
+
+  const FeaturedBooksPaginationFailure({required this.errorMessage});
+}
+
 class FeaturedBooksFailure extends FeaturedBooksState {
   final String errorMessage;
 

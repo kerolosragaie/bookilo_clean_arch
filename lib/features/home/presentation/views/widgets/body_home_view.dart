@@ -20,7 +20,7 @@ class HomeViewBody extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                 child: HomeAppBar(),
               ),
-              const FeaturedBooksListviewBlocBuilder(),
+              const FeaturedBooksListviewBlocConsumer(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
