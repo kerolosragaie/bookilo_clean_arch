@@ -1,20 +1,53 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:bookilo_clean_arch/features/home/domain/entities/book_entity.dart';
+import 'package:bookilo_clean_arch/features/home/presentation/views/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'item_book_image.dart';
 
-class FeaturedBooksListView extends StatelessWidget {
+class FeaturedBooksListView extends StatefulWidget {
   final List<BookEntity> booksList;
+
   const FeaturedBooksListView({
-    Key? key,
+    super.key,
     required this.booksList,
-  }) : super(key: key);
+  });
+
+  @override
+  State<FeaturedBooksListView> createState() => _FeaturedBooksListViewState();
+}
+
+class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
+  late final ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_scrollListener)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    double currentPosition = _scrollController.position.pixels;
+    double maxScrollLength = _scrollController.position.maxScrollExtent;
+    if (currentPosition >= 0.7 * maxScrollLength) {
+      BlocProvider.of<FeaturedBooksCubit>(context).fetchFeaturedBooks();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.3,
       child: LiveList.options(
+        controller: _scrollController,
         physics: const BouncingScrollPhysics(),
         options: const LiveOptions(
           showItemDuration: Duration(milliseconds: 200),
@@ -29,13 +62,13 @@ class FeaturedBooksListView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: BookImageItem(
                 showButton: true,
-                bookEntity: booksList[index],
+                bookEntity: widget.booksList[index],
               ),
             ),
           );
         },
         scrollDirection: Axis.horizontal,
-        itemCount: booksList.length,
+        itemCount: widget.booksList.length,
       ),
     );
   }
