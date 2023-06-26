@@ -58,7 +58,7 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
         controller: _scrollController,
         physics: const BouncingScrollPhysics(),
         options: const LiveOptions(
-          showItemDuration: Duration(milliseconds: 200),
+          showItemDuration: Duration(milliseconds: 50),
         ),
         itemBuilder: (context, index, animation) {
           return ScaleTransition(
