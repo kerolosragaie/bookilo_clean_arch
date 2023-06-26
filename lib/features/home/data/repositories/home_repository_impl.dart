@@ -21,11 +21,13 @@ class HomeRepositoryImpl extends HomeRepository {
       {int pageNumber = 0}) async {
     try {
       List<BookEntity> booksList;
-      booksList = homeLocalDatasource.fetchFeaturedBooks();
+      booksList =
+          homeLocalDatasource.fetchFeaturedBooks(pageNumber: pageNumber);
       if (booksList.isNotEmpty) {
         return Right(booksList);
       }
-      booksList = await homeRemoteDatasource.fetchFeaturedBooks();
+      booksList =
+          await homeRemoteDatasource.fetchFeaturedBooks(pageNumber: pageNumber);
       return Right(booksList);
     } catch (e) {
       return _catchingError(e);
